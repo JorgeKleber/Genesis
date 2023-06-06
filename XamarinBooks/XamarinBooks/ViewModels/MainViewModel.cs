@@ -1,6 +1,7 @@
 ﻿using Refit;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
@@ -15,6 +16,7 @@ namespace XamarinBooks.ViewModels
 		Xamarin.Auth.Presenters.OAuthLoginPresenter presenter;
 
 		private string _SearchText;
+		private ObservableCollection<BookItem> _SearchResultList;
 
 		public ICommand GoogleSignInCommand { get; set; }
 		public ICommand SearchCommand { get; set; }
@@ -25,6 +27,15 @@ namespace XamarinBooks.ViewModels
 			{
 				_SearchText = value;
 				Notify("SearchText");
+			}
+		}
+
+		public ObservableCollection<BookItem> SearchResultList
+		{
+			get => _SearchResultList;
+			set {
+				_SearchResultList = value;
+				Notify("SearchResultList");
 			}
 		}
 
@@ -43,8 +54,7 @@ namespace XamarinBooks.ViewModels
 			{
 				var result = await App.GoogleBooksApi.GetBookVolume(SearchText);
 
-				var firstBookTitle = result.Items;
-
+				SearchResultList = new ObservableCollection<BookItem>(result.Items);
 			}
 			catch (Exception ex)
 			{

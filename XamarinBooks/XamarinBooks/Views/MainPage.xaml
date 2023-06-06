@@ -3,21 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinBooks.Views.MainPage">
 
-    <StackLayout VerticalOptions="Start" 
-                 HorizontalOptions="Center">
+    <ContentPage.Content>
 
         <Grid Margin="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
             <Entry Placeholder="Informe sua pesquisa" Text="{Binding SearchText}" Grid.Column="0"/>
             <Button Text="Search" Grid.Column="1" Command="{Binding SearchCommand}"/>
+
+            <CollectionView Grid.Row="1" ItemsSource="{Binding SearchResultList}"
+                        ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Image Source="content.jpeg" />
+                            <Label Text="TESTE 2" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
 
-
-
-    </StackLayout>
+    </ContentPage.Content>
 
 </ContentPage>

@@ -110,13 +110,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomRenderers\" />
-    <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamarinBooks\XamarinBooks.csproj">
       <Project>{20C17C80-3CF8-40AE-BB37-268E55DCA703}</Project>
       <Name>XamarinBooks</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\content.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
