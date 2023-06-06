@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBooks.Views.MainPage">
+
+    <StackLayout VerticalOptions="Start" 
+                 HorizontalOptions="Center">
+
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Entry Placeholder="Informe sua pesquisa" Text="{Binding SearchText}" Grid.Column="0"/>
+            <Button Text="Search" Grid.Column="1" Command="{Binding SearchCommand}"/>
+        </Grid>
+
+
+
+    </StackLayout>
+
+</ContentPage>

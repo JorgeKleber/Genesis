@@ -8,25 +8,21 @@ using System.Threading.Tasks;
 using Xamarin.Auth;
 using Xamarin.Forms;
 using XamarinBooks.Dependency;
+using XamarinBooks.ViewModels;
 
-namespace XamarinBooks
+namespace XamarinBooks.Views
 {
 	public partial class MainPage : ContentPage
 	{
-		Xamarin.Auth.Presenters.OAuthLoginPresenter presenter;
+		private MainViewModel viewModel;
 
 		public MainPage()
 		{
-			presenter = new Xamarin.Auth.Presenters.OAuthLoginPresenter();
-
 			InitializeComponent();
-		}
 
-		private void OnGoogleLoginClicked(object sender, EventArgs e)
-		{
+			viewModel= new MainViewModel();
 
-			var gmailAuthenticator = DependencyService.Get<IGmailAuthenticator>();
-			gmailAuthenticator.Authenticate();
+			BindingContext= viewModel;
 		}
 
 	}

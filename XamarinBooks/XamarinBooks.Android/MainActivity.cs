@@ -9,6 +9,8 @@ using Android.Gms.Auth.Api.SignIn;
 using Android.Gms.Common.Apis;
 using Android.Content;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using XamarinBooks.Views;
 
 namespace XamarinBooks.Droid
 {
@@ -41,6 +43,8 @@ namespace XamarinBooks.Droid
 			if (requestCode == RC_SIGN_IN)
 			{
 				var task = GoogleSignIn.GetSignedInAccountFromIntent(data).Result;
+
+				App.Current.MainPage = new NavigationPage(new WelcomePage());
 				//HandleSignInResult(task);
 			}
 		}
@@ -51,16 +55,11 @@ namespace XamarinBooks.Droid
 			{
 				GoogleSignInAccount account =  completedTask;
 
-				// Aqui está o token de acesso
 				string accessToken = account.IdToken;
-
-				// Use o token de acesso conforme necessário
-				// ...
-
 			}
 			catch (ApiException ex)
 			{
-				// Lidar com exceção
+				
 			}
 		}
 
