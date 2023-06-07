@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="XamarinBooks.Views.MainPage">
 
     <ContentPage.Content>
@@ -10,7 +11,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
@@ -19,13 +20,25 @@
             <Entry Placeholder="Informe sua pesquisa" Text="{Binding SearchText}" Grid.Column="0"/>
             <Button Text="Search" Grid.Column="1" Command="{Binding SearchCommand}"/>
 
-            <CollectionView Grid.Row="1" ItemsSource="{Binding SearchResultList}"
-                        ItemsLayout="VerticalGrid, 2">
+            <CollectionView Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding ItemSelecionado, Mode=TwoWay}"
+                            ItemsSource="{Binding SearchResultList}"
+                            SelectionChangedCommand="{Binding ItemTappedCommand}"
+                            ItemsLayout="VerticalGrid, 2">
+                
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Image Source="content.jpeg" />
-                            <Label Text="TESTE 2" />
+                            <ffimageloading:CachedImage DownsampleToViewSize="true"
+                                                        ErrorPlaceholder="content.jpeg"
+                                                        LoadingPlaceholder="content.jpeg"
+                                                        FadeAnimationEnabled="True"
+                                                        Aspect="AspectFit"
+                                                        Source="{Binding VolumeInfo.ImageLinks.Thumbnail}" />
+                            
+                            <Label Text="{Binding VolumeInfo.Title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

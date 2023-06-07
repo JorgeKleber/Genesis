@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="XamarinBooks.Views.DetailPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1">
+
+                <Label Text="Titulo do livro hefevbdfjvodkfnvdfv iodnfveorbnveiornveoirnveionrv eoiveiornveoirjveirojve"
+                       TranslationY="130"
+                       FontSize="Large"
+                       HorizontalOptions="Start"
+                       Margin="25,0"/>
+
+                <StackLayout Margin="25,0"
+                             TranslationY="10"
+                             TranslationX="170"
+                             Spacing="1">
+                    
+                    <Label Text="Autor:"
+                           FontSize="Header"
+                           HorizontalOptions="Start"/>
+
+                    <Label Text="Nome do autor"
+                           FontSize="Header"
+                           HorizontalOptions="Start"/>
+                    
+                </StackLayout>
+
+                <StackLayout Margin="25,0"
+                             TranslationY="55"
+                             TranslationX="170"
+                             Spacing="1">
+
+                    <Label Text="Status:"
+                           FontSize="Header"
+                           HorizontalOptions="Start"/>
+
+                    <Label Text="Disponivel"
+                           FontSize="Header"
+                           HorizontalOptions="Start"/>
+
+                </StackLayout>
+
+            </Grid>
+
+            <Grid Grid.Row="0" >
+
+                <Label Text="Titulo do livro"
+                       TranslationY="200"
+                       TranslationX="-70"
+                       FontSize="Large"
+                       HorizontalOptions="End"
+                       Margin="10"/>
+
+                <ffimageloading:CachedImage DownsampleToViewSize="true"
+                                            ErrorPlaceholder="content.jpeg"
+                                            LoadingPlaceholder="content.jpeg"
+                                            FadeAnimationEnabled="True"
+                                            Aspect="AspectFill"
+                                            Source="content.jpeg" />
+
+                <ffimageloading:CachedImage DownsampleToViewSize="true"
+                                            TranslationY="125"
+                                            TranslationX="-100"
+                                            ErrorPlaceholder="content.jpeg"
+                                            LoadingPlaceholder="content.jpeg"
+                                            FadeAnimationEnabled="True"
+                                            Source="content.jpeg" />
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

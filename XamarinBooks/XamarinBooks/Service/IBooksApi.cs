@@ -9,7 +9,7 @@ namespace XamarinBooks.Service
 {
 	public interface IBooksApi
 	{
-		[Get("/volumes?q={query}&maxResults=10")]
+		[Get("/volumes?q={query}&maxResults=20")]
 		[Headers("Content-Type: application/json")]
 		Task<BookVolume> GetBookVolume(string query);
 	}

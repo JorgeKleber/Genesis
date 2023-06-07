@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using XamarinBooks.Dependency;
 using XamarinBooks.Service;
+using XamarinBooks.Views;
 
 namespace XamarinBooks.ViewModels
 {
@@ -16,10 +17,12 @@ namespace XamarinBooks.ViewModels
 		Xamarin.Auth.Presenters.OAuthLoginPresenter presenter;
 
 		private string _SearchText;
+		private BookItem _ItemSelecionado;
 		private ObservableCollection<BookItem> _SearchResultList;
 
 		public ICommand GoogleSignInCommand { get; set; }
 		public ICommand SearchCommand { get; set; }
+		public ICommand ItemTappedCommand { get; set; }
 		public string SearchText
 		{
 			get => _SearchText;
@@ -38,6 +41,15 @@ namespace XamarinBooks.ViewModels
 				Notify("SearchResultList");
 			}
 		}
+		
+		public BookItem ItemSelecionado
+		{
+			get => _ItemSelecionado;
+			set {
+				_ItemSelecionado = value;
+				Notify("ItemSelecionado");
+			}
+		}
 
 		public MainViewModel()
 		{
@@ -45,8 +57,17 @@ namespace XamarinBooks.ViewModels
 
 			GoogleSignInCommand = new Command(LoginClickEvent);
 			SearchCommand = new Command(SearchClickEvent);
+			ItemTappedCommand = new Command(ItemTappedEvent);
+
+			SearchText = "harry";
 		}
 
+		private async void ItemTappedEvent(object obj)
+		{
+			Debug.WriteLine("ITEM SELECIONADO: " + ItemSelecionado);
+
+			await App.Current.MainPage.Navigation.PushModalAsync(new DetailPage());
+		}
 
 		private async void SearchClickEvent(object obj)
 		{
