@@ -57,6 +57,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.9.141-beta</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.CustomTabs">
       <Version>28.0.0.3</Version>
     </PackageReference>
@@ -65,6 +68,24 @@
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Core">
       <Version>1.10.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.CommunityToolkit">
+      <Version>2.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations">
+      <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Auth">
       <Version>122.0.0.1</Version>
@@ -84,6 +105,7 @@
   <ItemGroup>
     <Compile Include="Authentication\GmailAuthenticator.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\CustomEditText.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -109,14 +131,28 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CustomRenderers\" />
-    <Folder Include="Resources\drawable\" />
+    <AndroidResource Include="Resources\drawable\border_shape.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamarinBooks\XamarinBooks.csproj">
       <Project>{20C17C80-3CF8-40AE-BB37-268E55DCA703}</Project>
       <Name>XamarinBooks</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\content.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\heartOutline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\heart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\search.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

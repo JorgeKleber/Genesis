@@ -9,10 +9,13 @@ using Android.Gms.Auth.Api.SignIn;
 using Android.Gms.Common.Apis;
 using Android.Content;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using XamarinBooks.Views;
+using FFImageLoading.Forms.Platform;
 
 namespace XamarinBooks.Droid
 {
-    [Activity(Label = "XamarinBooks", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [Activity(Label = "XamarinBooks", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 		private static int RC_SIGN_IN = 9001;
@@ -23,6 +26,8 @@ namespace XamarinBooks.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+			CachedImageRenderer.InitImageViewHandler();
+			FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer:true);
 			global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
 
 			LoadApplication(new App());
@@ -41,6 +46,8 @@ namespace XamarinBooks.Droid
 			if (requestCode == RC_SIGN_IN)
 			{
 				var task = GoogleSignIn.GetSignedInAccountFromIntent(data).Result;
+
+				App.Current.MainPage = new NavigationPage(new WelcomePage());
 				//HandleSignInResult(task);
 			}
 		}
@@ -51,16 +58,11 @@ namespace XamarinBooks.Droid
 			{
 				GoogleSignInAccount account =  completedTask;
 
-				// Aqui está o token de acesso
 				string accessToken = account.IdToken;
-
-				// Use o token de acesso conforme necessário
-				// ...
-
 			}
 			catch (ApiException ex)
 			{
-				// Lidar com exceção
+				
 			}
 		}
 
