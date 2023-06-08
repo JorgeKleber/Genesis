@@ -73,8 +73,6 @@ namespace XamarinBooks.ViewModels
 			GoogleSignInCommand = new Command(LoginClickEvent);
 			SearchCommand = new Command(SearchClickEvent);
 			ItemTappedCommand = new Command(ItemTappedEvent);
-
-			SearchText = "harry";
 		}
 
 		private void ScrollListEvent(object obj)

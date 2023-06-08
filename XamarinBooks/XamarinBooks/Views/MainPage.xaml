@@ -21,7 +21,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <custom:CustomEntry Placeholder="Informe sua pesquisa" Grid.ColumnSpan="2" Text="{Binding SearchText}" Grid.Column="0">
+            <custom:CustomEntry Placeholder="Informe um título de um livro aqui." Grid.ColumnSpan="2" Text="{Binding SearchText}" Grid.Column="0">
                 <custom:CustomEntry.Behaviors>
                     <xct:EventToCommandBehavior EventName="Completed" Command="{Binding SearchCommand}"/>
                 </custom:CustomEntry.Behaviors>
@@ -50,7 +50,7 @@
                                 <pancake:PancakeView.Shadow>
                                     <pancake:DropShadow Color="Black" Opacity="0.4" Offset="5,5" />
                                 </pancake:PancakeView.Shadow>
-                                
+
                                 <Grid >
                                     <ffimageloading:CachedImage DownsampleToViewSize="true"
                                                         ErrorPlaceholder="content.jpeg"
@@ -65,7 +65,7 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                
+
             </CollectionView>
         </Grid>
 
