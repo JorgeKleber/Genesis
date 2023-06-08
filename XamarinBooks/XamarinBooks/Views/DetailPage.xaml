@@ -12,9 +12,9 @@
 
             <Grid Grid.Row="1">
 
-                <Label Text="Titulo do livro hefevbdfjvodkfnvdfv iodnfveorbnveiornveoirnveionrv eoiveiornveoirjveirojve"
+                <Label Text="{Binding AboutBook}"
                        TranslationY="130"
-                       FontSize="Large"
+                       FontSize="Default"
                        HorizontalOptions="Start"
                        Margin="25,0"/>
 
@@ -52,19 +52,19 @@
 
             <Grid Grid.Row="0" >
 
-                <Label Text="Titulo do livro"
-                       TranslationY="200"
-                       TranslationX="-70"
-                       FontSize="Large"
-                       HorizontalOptions="End"
-                       Margin="10"/>
-
                 <ffimageloading:CachedImage DownsampleToViewSize="true"
                                             ErrorPlaceholder="content.jpeg"
                                             LoadingPlaceholder="content.jpeg"
                                             FadeAnimationEnabled="True"
                                             Aspect="AspectFill"
-                                            Source="content.jpeg" />
+                                            Source="{Binding ImageBook}" />
+
+                <Label Text="{Binding Title}"
+                       TranslationY="200"
+                       TranslationX="180"
+                       FontSize="Large"
+                       HorizontalOptions="Start"
+                       Margin="10"/>
 
                 <ffimageloading:CachedImage DownsampleToViewSize="true"
                                             TranslationY="125"
@@ -72,7 +72,7 @@
                                             ErrorPlaceholder="content.jpeg"
                                             LoadingPlaceholder="content.jpeg"
                                             FadeAnimationEnabled="True"
-                                            Source="content.jpeg" />
+                                            Source="{Binding ImageBook}" />
             </Grid>
 
         </Grid>

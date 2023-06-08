@@ -6,15 +6,23 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinBooks.Service;
+using XamarinBooks.ViewModels;
 
 namespace XamarinBooks.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetailPage : ContentPage
 	{
-		public DetailPage ()
+		private DetailViewModel viewModel;
+		public DetailPage (BookItem itemSelected)
 		{
 			InitializeComponent ();
+
+			viewModel = new DetailViewModel(itemSelected);
+
+			BindingContext = viewModel;
+
 		}
 	}
 }

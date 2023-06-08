@@ -24,6 +24,5 @@ namespace XamarinBooks.Views
 
 			BindingContext= viewModel;
 		}
-
-	}
+    }
 }
