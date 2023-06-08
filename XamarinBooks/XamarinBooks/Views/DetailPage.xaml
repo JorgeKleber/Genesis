@@ -22,7 +22,7 @@
                              TranslationY="10"
                              TranslationX="170"
                              Spacing="1">
-                    
+
                     <Label Text="Autor:"
                            FontSize="Header"
                            HorizontalOptions="Start"/>
@@ -30,7 +30,7 @@
                     <Label Text="Nome do autor"
                            FontSize="Header"
                            HorizontalOptions="Start"/>
-                    
+
                 </StackLayout>
 
                 <StackLayout Margin="25,0"
@@ -42,7 +42,7 @@
                            FontSize="Header"
                            HorizontalOptions="Start"/>
 
-                    <Label Text="Disponivel"
+                    <Label Text="Disponivel!"
                            FontSize="Header"
                            HorizontalOptions="Start"/>
 
@@ -50,7 +50,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="0" >
+            <Grid Grid.Row="0">
 
                 <ffimageloading:CachedImage DownsampleToViewSize="true"
                                             ErrorPlaceholder="content.jpeg"
@@ -58,6 +58,15 @@
                                             FadeAnimationEnabled="True"
                                             Aspect="AspectFill"
                                             Source="{Binding ImageBook}" />
+
+                <ImageButton HeightRequest="30" 
+                             WidthRequest="30"
+                             VerticalOptions="Start" 
+                             HorizontalOptions="End"
+                             Margin="10"
+                             BackgroundColor="Transparent"
+                             Source="heartOutline"
+                             Command="{Binding FavoriteBookCommand}"/>
 
                 <Label Text="{Binding Title}"
                        TranslationY="200"

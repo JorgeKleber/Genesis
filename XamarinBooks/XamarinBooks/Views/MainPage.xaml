@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:local="clr-namespace:XamarinBooks.Converters"
+             xmlns:custom="clr-namespace:XamarinBooks.UI.Renderers"
+             xmlns:converter="clr-namespace:XamarinBooks.Converters"
              x:Class="XamarinBooks.Views.MainPage">
 
     <ContentPage.Content>
@@ -19,8 +20,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Entry Placeholder="Informe sua pesquisa" Text="{Binding SearchText}" Grid.Column="0"/>
-            <Button Text="Search" Grid.Column="1" Command="{Binding SearchCommand}"/>
+            <custom:CustomEntry Placeholder="Informe sua pesquisa" Grid.ColumnSpan="2" Text="{Binding SearchText}" Grid.Column="0">
+                <custom:CustomEntry.Behaviors>
+                    <xct:EventToCommandBehavior EventName="Completed" Command="{Binding SearchCommand}"/>
+                </custom:CustomEntry.Behaviors>
+            </custom:CustomEntry>
 
             <CollectionView Grid.Row="1"
                             Grid.ColumnSpan="2"
@@ -44,7 +48,7 @@
                                                         LoadingPlaceholder="content.jpeg"
                                                         FadeAnimationEnabled="True"
                                                         Aspect="AspectFit"
-                                                        Source="{Binding VolumeInfo.ImageLinks.Thumbnail}" />
+                                                        Source="{Binding VolumeInfo.ImageLinks, Converter={converter:EmptyStringToImageConverter}}" />
 
                             <Label Text="{Binding VolumeInfo.Title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                         </StackLayout>

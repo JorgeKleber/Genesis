@@ -1,10 +1,10 @@
 ﻿using Refit;
 using System;
+using System.IO;
 using System.Net.Http;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using XamarinBooks.CustomRenderers;
-using XamarinBooks.Service;
+using XamarinBooks.Service.Local;
+using XamarinBooks.Service.Remote;
 using XamarinBooks.Views;
 
 namespace XamarinBooks
@@ -12,6 +12,9 @@ namespace XamarinBooks
 	public partial class App : Application
 	{
 		public static IBooksApi GoogleBooksApi { get; private set; }
+
+		string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "XamarinBooksDb.db3");
+		public DatabaseContext database { get; set; }
 
 		public App()
 		{
@@ -24,11 +27,12 @@ namespace XamarinBooks
 
 			GoogleBooksApi = RestService.For<IBooksApi>(httpClient);
 
-			MainPage = new  MainPage();
+			MainPage = new NavigationPage(new MainPage());
 		}
 
 		protected override void OnStart()
 		{
+			database = new DatabaseContext(dbPath);
 		}
 
 		protected override void OnSleep()

@@ -1,15 +1,11 @@
-﻿using Refit;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Auth.Presenters;
 using Xamarin.Forms;
-using XamarinBooks.Converters;
 using XamarinBooks.Dependency;
-using XamarinBooks.Service;
+using XamarinBooks.Models;
 using XamarinBooks.Views;
 
 namespace XamarinBooks.ViewModels
@@ -77,7 +73,6 @@ namespace XamarinBooks.ViewModels
 			GoogleSignInCommand = new Command(LoginClickEvent);
 			SearchCommand = new Command(SearchClickEvent);
 			ItemTappedCommand = new Command(ItemTappedEvent);
-			//ScrolledCommand = new Command(ScrollListEvent);
 
 			SearchText = "harry";
 		}
@@ -117,16 +112,11 @@ namespace XamarinBooks.ViewModels
 		{
 			Debug.WriteLine("ITEM SELECIONADO: " + ItemSelecionado);
 
-			await App.Current.MainPage.Navigation.PushModalAsync(new DetailPage(ItemSelecionado), true);
+			await App.Current.MainPage.Navigation.PushAsync(new DetailPage(ItemSelecionado), true);
 		}
 
 		private async void SearchClickEvent(object obj)
 		{
-			//indice = 0;
-			//canLoad = false;
-
-			//LoadList();
-
 			try
 			{
 				var result = await App.GoogleBooksApi.GetBookVolume(SearchText, indice);
