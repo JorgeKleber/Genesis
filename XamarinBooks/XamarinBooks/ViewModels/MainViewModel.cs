@@ -112,7 +112,7 @@ namespace XamarinBooks.ViewModels
 		{
 			Debug.WriteLine("ITEM SELECIONADO: " + ItemSelecionado);
 
-			await App.Current.MainPage.Navigation.PushAsync(new DetailPage(ItemSelecionado), true);
+			await App.Current.MainPage.Navigation.PushModalAsync(new DetailPage(ItemSelecionado), true);
 		}
 
 		private async void SearchClickEvent(object obj)
@@ -121,10 +121,8 @@ namespace XamarinBooks.ViewModels
 			{
 				var result = await App.GoogleBooksApi.GetBookVolume(SearchText, indice);
 
-				if (indice == 0)
-				{
-					SearchResultList = new ObservableCollection<BookItem>(result.Items);
-				}
+				SearchResultList = new ObservableCollection<BookItem>(result.Items);
+
 			}
 			catch (Exception ex)
 			{

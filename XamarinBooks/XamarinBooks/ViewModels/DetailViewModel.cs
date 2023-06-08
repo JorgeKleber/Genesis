@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamarinBooks.Models;
@@ -34,7 +35,7 @@ namespace XamarinBooks.ViewModels
 				Notify("Title");
 			}
 		}
-		
+
 		public string AboutBook
 		{
 			get => _AboutBook;
@@ -73,7 +74,9 @@ namespace XamarinBooks.ViewModels
 			ItemSelected = itemSelected;
 
 			Title = itemSelected.VolumeInfo.Title;
-			ImageBook = itemSelected.VolumeInfo.ImageLinks.Thumbnail;
+			ImageBook = itemSelected.VolumeInfo.ImageLinks?.Thumbnail == null
+						? "content.jpeg"
+						: itemSelected.VolumeInfo.ImageLinks?.Thumbnail;
 			AboutBook = itemSelected.VolumeInfo.Description;
 
 			FavoriteBookCommand = new Command(FavoriteBookEvent);

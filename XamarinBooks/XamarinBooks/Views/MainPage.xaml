@@ -5,6 +5,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:custom="clr-namespace:XamarinBooks.UI.Renderers"
              xmlns:converter="clr-namespace:XamarinBooks.Converters"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="XamarinBooks.Views.MainPage">
 
     <ContentPage.Content>
@@ -33,6 +34,7 @@
                             RemainingItemsThresholdReachedCommand="{Binding GetMoreItensCommand}"
                             SelectedItem="{Binding ItemSelecionado, Mode=TwoWay}"
                             ItemsSource="{Binding SearchResultList}"
+
                             SelectionChangedCommand="{Binding ItemTappedCommand}"
                             ItemsLayout="VerticalGrid, 2">
 
@@ -42,16 +44,25 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
-                            <ffimageloading:CachedImage DownsampleToViewSize="true"
+                        <Grid >
+                            <pancake:PancakeView Margin="15" BackgroundColor="#bc91d7" CornerRadius="5" HorizontalOptions="FillAndExpand" HeightRequest="280">
+
+                                <pancake:PancakeView.Shadow>
+                                    <pancake:DropShadow Color="Black" Opacity="0.4" Offset="5,5" />
+                                </pancake:PancakeView.Shadow>
+                                
+                                <Grid >
+                                    <ffimageloading:CachedImage DownsampleToViewSize="true"
                                                         ErrorPlaceholder="content.jpeg"
                                                         LoadingPlaceholder="content.jpeg"
                                                         FadeAnimationEnabled="True"
-                                                        Aspect="AspectFit"
+                                                        Aspect="Fill"
                                                         Source="{Binding VolumeInfo.ImageLinks, Converter={converter:EmptyStringToImageConverter}}" />
 
-                            <Label Text="{Binding VolumeInfo.Title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                        </StackLayout>
+                                    <Label Text="{Binding VolumeInfo.Title}" FontSize="Medium" VerticalOptions="End" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                </Grid>
+                            </pancake:PancakeView>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 
