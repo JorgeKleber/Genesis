@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamarinBooks.Models;
@@ -10,6 +12,9 @@ namespace XamarinBooks.ViewModels
 		private const string _LIKED_ICON = "heartOutline";
 		private BookItem _ItemSelected;
 		private string _Title;
+		private string _Autor;
+		private string _Status;
+		private string _BuyLink;
 		private string _AboutBook;
 		private string _ImageBook;
 		private string _ImageIcon;
@@ -34,7 +39,7 @@ namespace XamarinBooks.ViewModels
 				Notify("Title");
 			}
 		}
-		
+
 		public string AboutBook
 		{
 			get => _AboutBook;
@@ -65,7 +70,36 @@ namespace XamarinBooks.ViewModels
 			}
 		}
 
+		public string Autor
+		{
+			get => _Autor;
+			set
+			{
+				_Autor = value;
+				Notify("Autor");
+			}
+		}
+		public string Status
+		{
+			get => _Status;
+			set
+			{
+				_Status = value;
+				Notify("Status");
+			}
+		}
+		public string BuyLink
+		{
+			get => _BuyLink;
+			set
+			{
+				_BuyLink = value;
+				Notify("BuyLink");
+			}
+		}
+
 		public ICommand FavoriteBookCommand { get; set; }
+
 
 		public DetailViewModel(BookItem itemSelected)
 		{
@@ -73,8 +107,12 @@ namespace XamarinBooks.ViewModels
 			ItemSelected = itemSelected;
 
 			Title = itemSelected.VolumeInfo.Title;
-			ImageBook = itemSelected.VolumeInfo.ImageLinks.Thumbnail;
+			ImageBook = itemSelected.VolumeInfo.ImageLinks?.Thumbnail == null
+						? "content.jpeg"
+						: itemSelected.VolumeInfo.ImageLinks?.Thumbnail;
 			AboutBook = itemSelected.VolumeInfo.Description;
+			Autor = itemSelected.VolumeInfo.Authors.First();
+			BuyLink = itemSelected.VolumeInfo.InfoLink;
 
 			FavoriteBookCommand = new Command(FavoriteBookEvent);
 		}

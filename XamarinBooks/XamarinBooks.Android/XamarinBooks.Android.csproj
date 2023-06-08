@@ -149,10 +149,10 @@
     <AndroidResource Include="Resources\drawable\heart.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\arrow.png" />
+    <AndroidResource Include="Resources\drawable\search.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\search.xml" />
+    <AndroidResource Include="Resources\drawable\arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
