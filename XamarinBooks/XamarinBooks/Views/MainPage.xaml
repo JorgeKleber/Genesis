@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:XamarinBooks.Converters"
+             x:Class="XamarinBooks.Views.MainPage">
+
+    <ContentPage.Content>
+        
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Entry Placeholder="Informe sua pesquisa" Text="{Binding SearchText}" Grid.Column="0"/>
+            <Button Text="Search" Grid.Column="1" Command="{Binding SearchCommand}"/>
+
+            <CollectionView Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            SelectionMode="Single"
+                            RemainingItemsThreshold="5"
+                            RemainingItemsThresholdReachedCommand="{Binding GetMoreItensCommand}"
+                            SelectedItem="{Binding ItemSelecionado, Mode=TwoWay}"
+                            ItemsSource="{Binding SearchResultList}"
+                            SelectionChangedCommand="{Binding ItemTappedCommand}"
+                            ItemsLayout="VerticalGrid, 2">
+
+                <CollectionView.Behaviors>
+                    <xct:EventToCommandBehavior EventName="Scrolled" Command="{Binding ScrolledCommand}"/>
+                </CollectionView.Behaviors>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <ffimageloading:CachedImage DownsampleToViewSize="true"
+                                                        ErrorPlaceholder="content.jpeg"
+                                                        LoadingPlaceholder="content.jpeg"
+                                                        FadeAnimationEnabled="True"
+                                                        Aspect="AspectFit"
+                                                        Source="{Binding VolumeInfo.ImageLinks.Thumbnail}" />
+
+                            <Label Text="{Binding VolumeInfo.Title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>
