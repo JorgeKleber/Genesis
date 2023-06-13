@@ -61,11 +61,11 @@
 
                                 <Grid >
                                     <ffimageloading:CachedImage DownsampleToViewSize="true"
-                                                        ErrorPlaceholder="default_image.png"
-                                                        LoadingPlaceholder="default_image.png"
-                                                        FadeAnimationEnabled="True"
-                                                        Aspect="Fill"
-                                                        Source="{Binding VolumeInfo.ImageLinks, Converter={converter:EmptyStringToImageConverter}}" />
+                                                                ErrorPlaceholder="default_image.png"
+                                                                LoadingPlaceholder="default_image.png"
+                                                                FadeAnimationEnabled="True"
+                                                                Aspect="Fill"
+                                                                Source="{Binding VolumeInfo.ImageLinks, Converter={converter:EmptyStringToImageConverter}}" />
 
                                     <!--<Label Text="{Binding VolumeInfo.Title}" FontSize="Medium" VerticalOptions="End" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>-->
                                 </Grid>
