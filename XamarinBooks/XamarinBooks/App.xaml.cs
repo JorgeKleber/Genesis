@@ -18,7 +18,7 @@ namespace XamarinBooks
 
 		public App()
 		{
-			InitializeComponent();
+			database = new DatabaseContext(dbPath);
 
 			var httpClient = new HttpClient
 			{
@@ -27,12 +27,14 @@ namespace XamarinBooks
 
 			GoogleBooksApi = RestService.For<IBooksApi>(httpClient);
 
+			InitializeComponent();
+
 			MainPage =  new HomePage();
 		}
 
 		protected override void OnStart()
 		{
-			database = new DatabaseContext(dbPath);
+
 		}
 
 		protected override void OnSleep()

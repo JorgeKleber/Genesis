@@ -21,20 +21,18 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid  VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0">
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                
-                <custom:CustomEntry Placeholder="Informe um título de um livro aqui." Grid.Row="0" HeightRequest="40" Text="{Binding SearchText}" >
+            <Grid  VerticalOptions="CenterAndExpand"
+                   Grid.Row="0" 
+                   Grid.ColumnSpan="2" 
+                   Grid.Column="0">
+
+                <custom:CustomEntry Placeholder="Informe um título de um livro aqui." 
+                                    HeightRequest="40" 
+                                    Text="{Binding SearchText}" >
                     <custom:CustomEntry.Behaviors>
                         <xct:EventToCommandBehavior EventName="Completed" Command="{Binding SearchCommand}"/>
                     </custom:CustomEntry.Behaviors>
                 </custom:CustomEntry>
-                <Label Text="Favoritos" HorizontalOptions="EndAndExpand" Grid.Row="1" FontSize="Medium"/>
-
             </Grid>
 
             <CollectionView Grid.Row="1"
@@ -63,8 +61,8 @@
 
                                 <Grid >
                                     <ffimageloading:CachedImage DownsampleToViewSize="true"
-                                                        ErrorPlaceholder="content.jpeg"
-                                                        LoadingPlaceholder="content.jpeg"
+                                                        ErrorPlaceholder="default_image.png"
+                                                        LoadingPlaceholder="default_image.png"
                                                         FadeAnimationEnabled="True"
                                                         Aspect="Fill"
                                                         Source="{Binding VolumeInfo.ImageLinks, Converter={converter:EmptyStringToImageConverter}}" />

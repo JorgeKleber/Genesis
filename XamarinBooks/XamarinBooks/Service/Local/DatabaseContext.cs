@@ -73,7 +73,7 @@ namespace XamarinBooks.Service.Local
 			return newObject;
 		}
 
-		public List<VolumeInfoDb> GetBooks()
+		public List<VolumeInfoDb> GetFavoriteBooks()
 		{
 			return book.ToList();
 		}

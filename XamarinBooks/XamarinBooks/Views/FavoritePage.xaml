@@ -19,11 +19,19 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <custom:CustomEntry Placeholder="Informe um título de um livro aqui." Grid.ColumnSpan="2" Text="{Binding SearchText}" Grid.Column="0">
-                <custom:CustomEntry.Behaviors>
-                    <xct:EventToCommandBehavior EventName="Completed" Command="{Binding SearchCommand}"/>
-                </custom:CustomEntry.Behaviors>
-            </custom:CustomEntry>
+            <Grid  VerticalOptions="CenterAndExpand"
+                   Grid.Row="0" 
+                   Grid.ColumnSpan="2" 
+                   Grid.Column="0">
+
+                <custom:CustomEntry Placeholder="Informe um título de um livro aqui." 
+                                    HeightRequest="40" 
+                                    Text="{Binding SearchText}" >
+                    <custom:CustomEntry.Behaviors>
+                        <xct:EventToCommandBehavior EventName="Completed" Command="{Binding SearchCommand}"/>
+                    </custom:CustomEntry.Behaviors>
+                </custom:CustomEntry>
+            </Grid>
 
             <CollectionView Grid.Row="1"
                             Grid.ColumnSpan="2"
@@ -31,7 +39,7 @@
                             RemainingItemsThreshold="5"
                             RemainingItemsThresholdReachedCommand="{Binding GetMoreItensCommand}"
                             SelectedItem="{Binding ItemSelecionado, Mode=TwoWay}"
-                            ItemsSource="{Binding SearchResultList}"
+                            ItemsSource="{Binding FavoriteList}"
 
                             SelectionChangedCommand="{Binding ItemTappedCommand}"
                             ItemsLayout="VerticalGrid, 2">
@@ -55,7 +63,7 @@
                                                         LoadingPlaceholder="content.jpeg"
                                                         FadeAnimationEnabled="True"
                                                         Aspect="Fill"
-                                                        Source="{Binding VolumeInfo.ImageLinks}" />
+                                                        Source="{Binding FavoriteList.ImageLink}" />
 
                                     <Label Text="{Binding VolumeInfo.Title}" FontSize="Medium" VerticalOptions="End" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 </Grid>

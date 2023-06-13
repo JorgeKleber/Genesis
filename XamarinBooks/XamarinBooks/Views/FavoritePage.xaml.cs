@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinBooks.ViewModels;
 
 namespace XamarinBooks.Views
 {
@@ -15,6 +16,8 @@ namespace XamarinBooks.Views
 		public FavoritePage ()
 		{
 			InitializeComponent ();
+
+			BindingContext = new FavoriteViewModel();
 		}
 	}
 }
