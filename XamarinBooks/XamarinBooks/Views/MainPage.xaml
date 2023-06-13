@@ -10,7 +10,7 @@
 
     <ContentPage.Content>
         
-        <Grid Margin="15">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="100"/>
@@ -22,6 +22,7 @@
             </Grid.RowDefinitions>
 
             <Grid  VerticalOptions="CenterAndExpand"
+                   Margin="15"
                    Grid.Row="0" 
                    Grid.ColumnSpan="2" 
                    Grid.Column="0">
@@ -42,7 +43,6 @@
                             RemainingItemsThresholdReachedCommand="{Binding GetMoreItensCommand}"
                             SelectedItem="{Binding ItemSelecionado, Mode=TwoWay}"
                             ItemsSource="{Binding SearchResultList}"
-
                             SelectionChangedCommand="{Binding ItemTappedCommand}"
                             ItemsLayout="VerticalGrid, 2">
 
@@ -73,6 +73,16 @@
                 </CollectionView.ItemTemplate>
 
             </CollectionView>
+
+            <Grid IsVisible="{Binding IsSearching}" BackgroundColor="#98000000" Grid.RowSpan="2" Grid.ColumnSpan="2">
+
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <ActivityIndicator IsRunning="True" Color="#303F9F"  VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Label Text="Searching..." FontSize="20" TextColor="White"/>
+                </StackLayout>
+
+            </Grid>
+
         </Grid>
 
     </ContentPage.Content>
