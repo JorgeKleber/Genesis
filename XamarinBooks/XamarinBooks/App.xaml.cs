@@ -27,7 +27,7 @@ namespace XamarinBooks
 
 			GoogleBooksApi = RestService.For<IBooksApi>(httpClient);
 
-			MainPage =  new MainPage();
+			MainPage =  new HomePage();
 		}
 
 		protected override void OnStart()

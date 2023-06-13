@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:converter="clr-namespace:XamarinBooks.Converters"
              x:Class="XamarinBooks.Views.DetailPage">
     <ContentPage.Content>
 
@@ -72,14 +73,14 @@
                                                     LoadingPlaceholder="content.jpeg"
                                                     FadeAnimationEnabled="True"
                                                     Aspect="Fill"
-                                                    Source="{Binding ImageBook}" />
+                                                    Source="{Binding ImageBook, Converter={converter:ImageDetailConverter}}" />
                     </Grid>
                 </pancake:PancakeView>
             </Grid>
 
             <Grid Grid.Row="2"
-                  HorizontalOptions="CenterAndExpand" 
-                  VerticalOptions="CenterAndExpand">
+                  Grid.RowSpan="2"
+                  HorizontalOptions="CenterAndExpand" >
 
                 <pancake:PancakeView CornerRadius="10"
                                      Margin="10">
@@ -88,9 +89,9 @@
                         <pancake:DropShadow Color="Black"  Opacity="0.5" Offset="8,5" />
                     </pancake:PancakeView.Shadow>
 
-                    <Grid Background="#ffff">
+                    <Grid>
 
-                        <ScrollView Margin="25">
+                        <ScrollView Margin="25,25,25,50">
                             <Label Text="{Binding AboutBook}" FontSize="Default"/>
                         </ScrollView>
 
@@ -105,7 +106,8 @@
                     WidthRequest="100"
                     HeightRequest="45"
                     VerticalOptions="End"
-                    BackgroundColor="#62975A"/>
+                    BackgroundColor="#62975A"
+                    Command="{Binding OpenInBrowserCommand}"/>
 
 
         </Grid>
