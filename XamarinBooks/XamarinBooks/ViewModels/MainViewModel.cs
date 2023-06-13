@@ -18,6 +18,7 @@ namespace XamarinBooks.ViewModels
 		private bool canLoad = false;
 
 		private string _SearchText;
+		private bool _IsSearching;
 		private BookItem _ItemSelecionado;
 		private ObservableCollection<BookItem> _SearchResultList;
 		private ICommand _GetMoreItensCommand;
@@ -66,8 +67,20 @@ namespace XamarinBooks.ViewModels
 			}
 		}
 
+		public bool IsSearching
+		{
+			get => _IsSearching;
+			set
+			{
+				_IsSearching = value;
+				Notify("IsSearching");
+			}
+		}
+
 		public MainViewModel()
 		{
+			IsSearching = false;
+
 			presenter = new Xamarin.Auth.Presenters.OAuthLoginPresenter();
 
 			GoogleSignInCommand = new Command(LoginClickEvent);
@@ -115,11 +128,14 @@ namespace XamarinBooks.ViewModels
 
 		private async void SearchClickEvent(object obj)
 		{
+			IsSearching = true;
 			try
 			{
 				var result = await App.GoogleBooksApi.GetBookVolume(SearchText, indice);
 
 				SearchResultList = new ObservableCollection<BookItem>(result.Items);
+
+				IsSearching = false;
 
 			}
 			catch (Exception ex)
