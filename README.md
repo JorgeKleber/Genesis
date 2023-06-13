@@ -1,7 +1,7 @@
 # Genesis
 This project use google books API!
 
-![](https://github.com/JorgeKleber/Genesis/blob/master/Captura%20de%20tela%202023-06-08%20210510.png)
+![](https://github.com/JorgeKleber/Genesis/blob/master/image_app.png)
 
 * Highly recommended to delete the bin and obj folders of each project.
 
