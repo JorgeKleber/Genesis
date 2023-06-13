@@ -9,7 +9,8 @@ namespace XamarinBooks.Service.Local
 {
 
 	public class DatabaseContext : SQLiteConnection
-	{
+	{ 
+
 		public DatabaseContext(string databasePath) : base(databasePath)
 		{
 			CreateTable<VolumeInfoDb>();
@@ -57,7 +58,7 @@ namespace XamarinBooks.Service.Local
 				Description = book.VolumeInfo.Description,
 				PageCount = book.VolumeInfo.PageCount,
 				PrintType = book.VolumeInfo.PrintType,
-				Categories = book.VolumeInfo.Categories.FirstOrDefault(),
+				Categories = book.VolumeInfo.Categories?.FirstOrDefault(),
 				AverageRating = book.VolumeInfo.AverageRating,
 				RatingsCount = book.VolumeInfo.RatingsCount,
 				MaturityRating = book.VolumeInfo.MaturityRating,
@@ -73,7 +74,7 @@ namespace XamarinBooks.Service.Local
 			return newObject;
 		}
 
-		public List<VolumeInfoDb> GetBooks()
+		public List<VolumeInfoDb> GetFavoriteBooks()
 		{
 			return book.ToList();
 		}

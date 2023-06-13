@@ -11,6 +11,7 @@ namespace XamarinBooks
 {
 	public partial class App : Application
 	{
+		public Action ReloadFavoriteList;
 		public static IBooksApi GoogleBooksApi { get; private set; }
 
 		string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "XamarinBooksDb.db3");
@@ -18,7 +19,7 @@ namespace XamarinBooks
 
 		public App()
 		{
-			InitializeComponent();
+			database = new DatabaseContext(dbPath);
 
 			var httpClient = new HttpClient
 			{
@@ -27,12 +28,14 @@ namespace XamarinBooks
 
 			GoogleBooksApi = RestService.For<IBooksApi>(httpClient);
 
-			MainPage =  new MainPage();
+			InitializeComponent();
+
+			MainPage =  new HomePage();
 		}
 
 		protected override void OnStart()
 		{
-			database = new DatabaseContext(dbPath);
+
 		}
 
 		protected override void OnSleep()

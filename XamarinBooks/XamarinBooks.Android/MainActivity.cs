@@ -1,21 +1,17 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.OS;
-using AndroidX.Core.OS;
 using Android.Gms.Auth.Api.SignIn;
 using Android.Gms.Common.Apis;
-using Android.Content;
-using System.Threading.Tasks;
+using Android.OS;
+using Android.Runtime;
+using FFImageLoading.Forms.Platform;
 using Xamarin.Forms;
 using XamarinBooks.Views;
-using FFImageLoading.Forms.Platform;
 
 namespace XamarinBooks.Droid
 {
-    [Activity(Label = "XamarinBooks", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+	[Activity(Label = "XamarinBooks", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 		private static int RC_SIGN_IN = 9001;
@@ -24,7 +20,7 @@ namespace XamarinBooks.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 			CachedImageRenderer.InitImageViewHandler();
 			FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer:true);
