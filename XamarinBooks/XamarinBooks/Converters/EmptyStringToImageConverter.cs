@@ -15,7 +15,7 @@ namespace XamarinBooks.Converters
 
 			if (item == null)
 			{
-				return "content.jpeg";
+				return "default_image.png";
 			}
 
 			return item.Thumbnail;

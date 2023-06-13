@@ -3,46 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:custom="clr-namespace:XamarinBooks.UI.Renderers"
-             xmlns:converter="clr-namespace:XamarinBooks.Converters"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="XamarinBooks.Views.MainPage">
-
+             xmlns:custom="clr-namespace:XamarinBooks.UI.Renderers"
+             x:Class="XamarinBooks.Views.FavoritePage">
+    
     <ContentPage.Content>
-        
         <Grid Margin="15">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid  VerticalOptions="CenterAndExpand"
-                   Grid.Row="0" 
+            <Label Text="Favorites"
+                   FontSize="20"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Row="0"
                    Grid.ColumnSpan="2" 
-                   Grid.Column="0">
-
-                <custom:CustomEntry Placeholder="Informe um título de um livro aqui." 
-                                    HeightRequest="40" 
-                                    Text="{Binding SearchText}" >
-                    <custom:CustomEntry.Behaviors>
-                        <xct:EventToCommandBehavior EventName="Completed" Command="{Binding SearchCommand}"/>
-                    </custom:CustomEntry.Behaviors>
-                </custom:CustomEntry>
-            </Grid>
+                   Grid.Column="0"> 
+            </Label>
 
             <CollectionView Grid.Row="1"
                             Grid.ColumnSpan="2"
                             SelectionMode="Single"
-                            RemainingItemsThreshold="5"
-                            RemainingItemsThresholdReachedCommand="{Binding GetMoreItensCommand}"
                             SelectedItem="{Binding ItemSelecionado, Mode=TwoWay}"
-                            ItemsSource="{Binding SearchResultList}"
-
+                            ItemsSource="{Binding FavoriteList}"
                             SelectionChangedCommand="{Binding ItemTappedCommand}"
                             ItemsLayout="VerticalGrid, 2">
 
@@ -65,7 +55,9 @@
                                                                 LoadingPlaceholder="default_image.png"
                                                                 FadeAnimationEnabled="True"
                                                                 Aspect="Fill"
-                                                                Source="{Binding VolumeInfo.ImageLinks, Converter={converter:EmptyStringToImageConverter}}" />
+                                                                Source="{Binding ImageLink}" />
+
+                                    <Label Text="{Binding VolumeInfo.Title}" FontSize="Medium" VerticalOptions="End" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 </Grid>
                             </pancake:PancakeView>
                         </Grid>
@@ -74,7 +66,5 @@
 
             </CollectionView>
         </Grid>
-
     </ContentPage.Content>
-
 </ContentPage>

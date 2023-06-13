@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using XamarinBooks.Models;
 
@@ -99,6 +100,7 @@ namespace XamarinBooks.ViewModels
 		}
 
 		public ICommand FavoriteBookCommand { get; set; }
+		public ICommand OpenInBrowserCommand { get; set; }
 
 
 		public DetailViewModel(BookItem itemSelected)
@@ -107,14 +109,18 @@ namespace XamarinBooks.ViewModels
 			ItemSelected = itemSelected;
 
 			Title = itemSelected.VolumeInfo.Title;
-			ImageBook = itemSelected.VolumeInfo.ImageLinks?.Thumbnail == null
-						? "content.jpeg"
-						: itemSelected.VolumeInfo.ImageLinks?.Thumbnail;
+			ImageBook = itemSelected.VolumeInfo.ImageLinks?.Thumbnail;
 			AboutBook = itemSelected.VolumeInfo.Description;
 			Autor = itemSelected.VolumeInfo.Authors.First();
 			BuyLink = itemSelected.VolumeInfo.InfoLink;
 
 			FavoriteBookCommand = new Command(FavoriteBookEvent);
+			OpenInBrowserCommand = new Command(OpenInBrowserEvent);
+		}
+
+		private async void OpenInBrowserEvent(object obj)
+		{
+			await Launcher.OpenAsync(new Uri(ItemSelected.AccessInfo.WebReaderLink));
 		}
 
 		private void FavoriteBookEvent(object obj)
@@ -126,6 +132,7 @@ namespace XamarinBooks.ViewModels
 			var newObject = AppClass.database.ConvertObject(ItemSelected);
 
 			AppClass.database.SalveBookData(newObject);
+			AppClass.ReloadFavoriteList.Invoke();
 		}
 	}
 }

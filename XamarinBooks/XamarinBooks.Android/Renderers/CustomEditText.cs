@@ -22,7 +22,7 @@ namespace XamarinBooks.Droid.Renderers
 			if (Control != null)
 			{
 				Control.Background = Context.GetDrawable(Resource.Drawable.border_shape);
-				Control.SetPadding(20,0,10,0);
+				Control.SetPadding(25,0,25,0);
 				Drawable icon = Context.GetDrawable(Resource.Drawable.search);
 				Control.SetCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null);
 
