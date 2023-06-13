@@ -11,6 +11,7 @@ namespace XamarinBooks
 {
 	public partial class App : Application
 	{
+		public Action ReloadFavoriteList;
 		public static IBooksApi GoogleBooksApi { get; private set; }
 
 		string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "XamarinBooksDb.db3");

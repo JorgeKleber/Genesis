@@ -42,10 +42,16 @@ namespace XamarinBooks.ViewModels
 		public FavoriteViewModel()
 		{
 			AppClass = App.Current as App;
+			AppClass.ReloadFavoriteList = ReloadList;
 
-			FavoriteList = new ObservableCollection<VolumeInfoDb>(AppClass.database.GetFavoriteBooks());
+			AppClass.ReloadFavoriteList.Invoke();
 
 			ItemTappedCommand = new Command(ItemTappedEvent);
+		}
+
+		public void ReloadList()
+		{
+			FavoriteList = new ObservableCollection<VolumeInfoDb>(AppClass.database.GetFavoriteBooks());
 		}
 
 		private async void ItemTappedEvent(object obj)
@@ -65,6 +71,7 @@ namespace XamarinBooks.ViewModels
 			info.Authors = autors;
 			info.Publisher = ItemSelecionado.Publisher;
 			info.ImageLinks = links;
+			info.Description = ItemSelecionado.Description;
 
 			bookItem.VolumeInfo = info;
 

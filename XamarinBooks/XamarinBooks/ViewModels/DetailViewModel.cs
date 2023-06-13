@@ -132,6 +132,7 @@ namespace XamarinBooks.ViewModels
 			var newObject = AppClass.database.ConvertObject(ItemSelected);
 
 			AppClass.database.SalveBookData(newObject);
+			AppClass.ReloadFavoriteList.Invoke();
 		}
 	}
 }

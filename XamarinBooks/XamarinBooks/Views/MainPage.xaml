@@ -66,8 +66,6 @@
                                                                 FadeAnimationEnabled="True"
                                                                 Aspect="Fill"
                                                                 Source="{Binding VolumeInfo.ImageLinks, Converter={converter:EmptyStringToImageConverter}}" />
-
-                                    <!--<Label Text="{Binding VolumeInfo.Title}" FontSize="Medium" VerticalOptions="End" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>-->
                                 </Grid>
                             </pancake:PancakeView>
                         </Grid>
